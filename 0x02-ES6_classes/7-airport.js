@@ -1,19 +1,18 @@
-export default class Airport {
-    constructor(name, code) {
-      this._name = name;
-      this._code = code;
+class Airport {
+  constructor(name, code) {
+    if (typeof name !== 'string') {
+      throw new TypeError('Name must be a string');
+    } else if (typeof code !== 'string') {
+      throw new TypeError('Code must be a string');
     }
-  
-    get name() {
-      return this._name;
-    }
-  
-    get code() {
-      return this._code;
-    }
-  
-    toString() {
-      return `[object ${this._code}]`;
-    }
+
+    this._name = name;
+    this._code = code;
   }
-  
+
+  get [Symbol.toStringTag]() {
+    return `${this._code}`;
+  }
+}
+
+export default Airport;
